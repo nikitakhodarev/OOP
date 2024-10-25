@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Базовый класс Book
+class Book {
+    public:
+        string title;
+        string author;
+
+        // Конструктор базового класса
+        Book(string title, string author) : title(title), author(author) {}
+
+        // Метод для отображения информации о книге
+        void displayBookInfo() const {
+            cout << "Title: " << title << ", Author: " << author << endl;
+        }
+
+        // Деструктор базового класса
+        ~Book() {
+            cout << "Book " << title << " has been removed." << endl;
+        }
+};
+
+// Класс Textbook, наследующий Book
+class Textbook : public Book {
+    private:
+        string subject;
+        int edition;
+
+    public:
+        // Конструктор наследуемого класса
+        Textbook(string title, string author, string subject, int edition)
+         : Book(title, author), subject(subject), edition(edition) {}
+
+        // Метод для отображения информации о учебнике
+        void displayTextbookInfo() const {
+            cout << "Subject: " << subject << ", Edition: " << edition << endl;
+        }
+
+        // Деструктор наследуемого класса
+        ~Textbook() {
+            cout << "Textbook " << title << " has been destroyed." << endl;
+        }
+};
+
+// Главная функция программы
+int main() {
+    // Создаем объект Textbook
+    Textbook textbook("C++ Programming", "Bjarne Stroustrup", "Programming", 4);
+
+    // Вызываем методы для отображения информации
+    textbook.displayBookInfo();
+    textbook.displayTextbookInfo();
+
+    return 0;
+}
