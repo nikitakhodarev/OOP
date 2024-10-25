@@ -9,7 +9,7 @@ private:
 public:
     Student(std::string name, double gpa) : name(name), gpa(gpa) {}
 
-    // Перегрузка оператора >
+   
     bool operator>(const Student &other) const {
         return this->gpa > other.gpa;
     }
@@ -20,8 +20,8 @@ public:
 };
 
 int main() {
-    Student student1("Alice", 3.8);
-    Student student2("Bob", 3.5);
+    Student student1("Alex", 3.9);
+    Student student2("Bul", 3.2);
 
     student1.display();
     student2.display();
