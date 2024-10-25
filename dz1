@@ -1,0 +1,24 @@
+class Student {
+private:
+    std::string name;
+    int age;
+    std::string studentID;
+    double grades[5];
+
+public:
+    // Constructor
+    Student(std::string name, int age, std::string studentID) : name(name), age(age), studentID(studentID) {}
+
+    // Destructor
+    ~Student() {
+        std::cout << "Student " << name << " has completed their education." << std::endl;
+    }
+
+    // Method to calculate average grade
+    double calculateAverageGrade() const {
+        double sum = 0;
+        for (int i = 0; i < 5; ++i)
+            sum += grades[i];
+        return sum / 5;
+    }
+};
