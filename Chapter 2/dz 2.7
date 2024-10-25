@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Базовый класс Movie
+class Movie {
+    public:
+        string title;
+        string director;
+
+        // Конструктор базового класса
+        Movie(string title, string director) : title(title), director(director) {}
+
+        // Метод для отображения информации о фильме
+        void displayMovieInfo() const {
+            cout << "Title: " << title << ", Director: " << director << endl;
+        }
+
+        // Деструктор базового класса
+        ~Movie() {
+            cout << "Movie " << title << " has been finished." << endl;
+        }
+};
+
+// Класс Documentary, наследующий Movie
+class Documentary : public Movie {
+    private:
+        string subject;
+        int duration;  // Продолжительность в минутах
+
+    public:
+        // Конструктор наследуемого класса
+        Documentary(string title, string director, string subject, int duration)
+         : Movie(title, director), subject(subject), duration(duration) {}
+
+        // Метод для отображения информации о документальном фильме
+        void displayDocumentaryInfo() const {
+            cout << "Subject: " << subject << ", Duration: " << duration << " minutes" << endl;
+        }
+
+        // Деструктор наследуемого класса
+        ~Documentary() {
+            cout << "Documentary " << title << " has been concluded." << endl;
+        }
+};
+
+// Главная функция программы
+int main() {
+    // Создаем объект Documentary
+    Documentary doc("The Last Dance", "Jason Hehir", "Basketball", 500);
+
+    // Вызываем методы для отображения информации
+    doc.displayMovieInfo();
+    doc.displayDocumentaryInfo();
+
+    return 0;
+}
