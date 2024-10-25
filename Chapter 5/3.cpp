@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <algorithm> // для std::swap
+#include <algorithm> 
 
 template <typename T>
 void selectionSort(T* array, size_t size) {
