@@ -10,10 +10,9 @@ private:
     size_t cols;
 
 public:
-    // Конструктор для создания матрицы заданного размера
+    
     Matrix(size_t rows, size_t cols) : rows(rows), cols(cols), data(rows, std::vector<T>(cols)) {}
 
-    // Ввод матрицы
     void input() {
         for (size_t i = 0; i < rows; ++i) {
             for (size_t j = 0; j < cols; ++j) {
@@ -22,7 +21,6 @@ public:
         }
     }
 
-    // Вывод матрицы
     void output() const {
         for (size_t i = 0; i < rows; ++i) {
             for (size_t j = 0; j < cols; ++j) {
@@ -32,7 +30,6 @@ public:
         }
     }
 
-    // Сложение матриц
     Matrix<T> operator+(const Matrix<T>& other) const {
         if (rows != other.rows || cols != other.cols) {
             throw std::runtime_error("Матрицы должны иметь одинаковый размер для сложения.");
@@ -47,7 +44,7 @@ public:
         return result;
     }
 
-    // Вычитание матриц
+ 
     Matrix<T> operator-(const Matrix<T>& other) const {
         if (rows != other.rows || cols != other.cols) {
             throw std::runtime_error("Матрицы должны иметь одинаковый размер для вычитания.");
@@ -62,7 +59,6 @@ public:
         return result;
     }
 
-    // Умножение матриц
     Matrix<T> operator*(const Matrix<T>& other) const {
         if (cols != other.rows) {
             throw std::runtime_error("Количество столбцов в первой матрице должно быть равно количеству строк во второй матрице для умножения.");
