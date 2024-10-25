@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Базовый класс Computer
+class Computer {
+    public:
+        string brand;
+        double processorSpeed;
+
+        // Конструктор базового класса
+        Computer(string brand, double processorSpeed)
+         : brand(brand), processorSpeed(processorSpeed) {}
+
+        // Метод для отображения информации о компьютере
+        void displayComputerInfo() const {
+            cout << "Brand: " << brand << ", Processor Speed: " << processorSpeed << " GHz" << endl;
+        }
+
+        // Деструктор базового класса
+        ~Computer() {
+            cout << "Computer " << brand << " has been removed." << endl;
+        }
+};
+
+// Класс DesktopComputer, наследующий Computer
+class DesktopComputer : public Computer {
+    private:
+        int monitorSize;
+        bool isGamingPC;
+
+    public:
+        // Конструктор наследуемого класса
+        DesktopComputer(string brand, double processorSpeed, int monitorSize, bool isGamingPC)
+         : Computer(brand, processorSpeed), monitorSize(monitorSize), isGamingPC(isGamingPC) {}
+
+        // Метод для отображения информации о настольном компьютере
+        void displayDesktopInfo() const {
+            cout << "Monitor Size: " << monitorSize << " inches, Gaming PC: " << (isGamingPC ? "Yes" : "No") << endl;
+        }
+
+        // Деструктор наследуемого класса
+        ~DesktopComputer() {
+            cout << "Desktop Computer " << brand << " has been shut down." << endl;
+        }
+};
+
+// Главная функция программы
+int main() {
+    // Создаем объект DesktopComputer
+    DesktopComputer desktop("Dell", 3.5, 27, true);
+
+    // Вызываем методы для отображения информации
+    desktop.displayComputerInfo();
+    desktop.displayDesktopInfo();
+
+    return 0;
+}
