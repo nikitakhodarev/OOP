@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student {
+    public:
+        int age;
+        string name;
+        
+        Student(string name, int age):name(name), age(age){}
+    
+        void StudentInfo() const{
+            cout << "Name: " << name << ", Age: " << age << endl;
+        }
+};
+
+class InternaitionalStudent : public Student {
+    private:
+        string country;
+        string language;
+    
+    public:
+        InternaitionalStudent(string name, int age, string country, string language)
+         : Student(name, age), country(country), language(language){}
+        
+        void displayInternaitionalStudentInfo(){
+            cout << "Country: "<< country << "\n" << "Language: " << language << endl;
+        }
+        
+        ~InternaitionalStudent() {
+            cout << "Internaitional Student " << name << " has comleted their studies." << endl;
+        }
+    
+};
+
+int main()
+{
+    InternaitionalStudent student("Maxim",24 , "Moscow ", "Russian");
+    
+    student.StudentInfo();
+    student.displayInternaitionalStudentInfo();
+}
