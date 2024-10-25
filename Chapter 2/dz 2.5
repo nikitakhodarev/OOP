@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Базовый класс Phone
+class Phone {
+    public:
+        string brand;
+        string model;
+
+        // Конструктор базового класса
+        Phone(string brand, string model) : brand(brand), model(model) {}
+
+        // Метод для отображения информации о телефоне
+        void displayPhoneInfo() const {
+            cout << "Brand: " << brand << ", Model: " << model << endl;
+        }
+
+        // Деструктор базового класса
+        ~Phone() {
+            cout << "Phone " << brand << " " << model << " has been turned off." << endl;
+        }
+};
+
+// Класс FeaturePhone, наследующий Phone
+class FeaturePhone : public Phone {
+    private:
+        bool hasCamera;
+        bool hasBluetooth;
+
+    public:
+        // Конструктор наследуемого класса
+        FeaturePhone(string brand, string model, bool hasCamera, bool hasBluetooth)
+         : Phone(brand, model), hasCamera(hasCamera), hasBluetooth(hasBluetooth) {}
+
+        // Метод для отображения информации о телефоне
+        void displayFeaturePhoneInfo() const {
+            cout << "Camera: " << (hasCamera ? "Yes" : "No") << ", Bluetooth: " << (hasBluetooth ? "Yes" : "No") << endl;
+        }
+
+        // Деструктор наследуемого класса
+        ~FeaturePhone() {
+            cout << "Feature phone " << brand << " " << model << " has been disabled." << endl;
+        }
+};
+
+// Главная функция программы
+int main() {
+    // Создаем объект FeaturePhone
+    FeaturePhone phone("Nokia", "3310", true, false);
+
+    // Вызываем методы для отображения информации
+    phone.displayPhoneInfo();
+    phone.displayFeaturePhoneInfo();
+
+    return 0;
+}
