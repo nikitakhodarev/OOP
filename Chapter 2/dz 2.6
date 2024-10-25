@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Базовый класс Player
+class Player {
+    public:
+        string name;
+        int age;
+
+        // Конструктор базового класса
+        Player(string name, int age) : name(name), age(age) {}
+
+        // Метод для отображения информации о игроке
+        void displayPlayerInfo() const {
+            cout << "Player Name: " << name << ", Age: " << age << endl;
+        }
+
+        // Деструктор базового класса
+        ~Player() {
+            cout << "Player " << name << " has retired." << endl;
+        }
+};
+
+// Класс ProfessionalPlayer, наследующий Player
+class ProfessionalPlayer : public Player {
+    private:
+        string team;
+        double salary;
+
+    public:
+        // Конструктор наследуемого класса
+        ProfessionalPlayer(string name, int age, string team, double salary)
+         : Player(name, age), team(team), salary(salary) {}
+
+        // Метод для отображения информации о профессиональном игроке
+        void displayProfessionalPlayerInfo() const {
+            cout << "Team: " << team << ", Salary: $" << salary << endl;
+        }
+
+        // Деструктор наследуемого класса
+        ~ProfessionalPlayer() {
+            cout << "Professional player " << name << " has been removed from the team." << endl;
+        }
+};
+
+// Главная функция программы
+int main() {
+    // Создаем объект ProfessionalPlayer
+    ProfessionalPlayer player("Michael Jordan", 40, "Chicago Bulls", 30000000);
+
+    // Вызываем методы для отображения информации
+    player.displayPlayerInfo();
+    player.displayProfessionalPlayerInfo();
+
+    return 0;
+}
