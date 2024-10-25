@@ -1,0 +1,21 @@
+class Product {
+private:
+    std::string name;
+    double price;
+    int stock;
+
+public:
+    // Constructor
+    Product(std::string name, double price)
+        : name(name), price(price), stock(0) {}
+
+    // Destructor
+    ~Product() {
+        std::cout << "Product " << name << " is no longer stored." << std::endl;
+    }
+
+    // Method to calculate total stock value
+    double calculateStockValue() const {
+        return price * stock;
+    }
+};
