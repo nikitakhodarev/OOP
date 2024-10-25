@@ -1,0 +1,28 @@
+class BankAccount {
+private:
+    std::string accountNumber;
+    std::string ownerName;
+    double balance;
+
+public:
+  
+    BankAccount(std::string accountNumber, std::string ownerName)
+        : accountNumber(accountNumber), ownerName(ownerName), balance(0) {}
+
+    ~BankAccount() {
+        std::cout << "Bank account of " << ownerName << " has been closed." << std::endl;
+    }
+
+    // Method to deposit money
+    void deposit(double amount) {
+        balance += amount;
+    }
+
+    bool withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+};
