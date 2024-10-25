@@ -5,16 +5,14 @@ private:
     int experiencePoints;
 
 public:
-    // Constructor
+   
     Player(std::string name, int level = 1)
         : name(name), level(level), experiencePoints(0) {}
 
-    // Destructor
     ~Player() {
         std::cout << "Player " << name << " has been deleted." << std::endl;
     }
 
-    // Method to level up
     void levelUp() {
         if (experiencePoints >= 100) {
             ++level;
@@ -23,7 +21,6 @@ public:
         }
     }
 
-    // Method to add experience points
     void addExperience(int points) {
         experiencePoints += points;
         levelUp();
