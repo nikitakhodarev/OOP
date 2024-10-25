@@ -1,0 +1,30 @@
+class Worker {
+private:
+    std::string name;
+    std::string position;
+    double salary;
+    int experienceYears;
+
+public:
+    // Constructor
+    Worker(std::string name, std::string position, double salary)
+        : name(name), position(position), salary(salary), experienceYears(0) {}
+
+    // Destructor
+    ~Worker() {
+        std::cout << "Worker " << name << " has been dismissed." << std::endl;
+    }
+
+    // Method to increase salary based on experience
+    void increaseSalary() {
+        if (experienceYears >= 5) {
+            salary += salary * 0.1;
+        }
+    }
+
+    // Method to add work experience
+    void addExperience(int years) {
+        experienceYears += years;
+        increaseSalary();
+    }
+};
