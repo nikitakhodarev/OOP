@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Базовый класс Worker
+class Worker {
+    public:
+        string name;
+        double salary;
+
+        // Конструктор базового класса
+        Worker(string name, double salary) : name(name), salary(salary) {}
+
+        // Метод для отображения информации о работнике
+        void displayWorkerInfo() const {
+            cout << "Worker Name: " << name << ", Salary: $" << salary << endl;
+        }
+
+        // Деструктор базового класса
+        ~Worker() {
+            cout << "Worker " << name << " has left the company." << endl;
+        }
+};
+
+// Класс Manager, наследующий Worker
+class Manager : public Worker {
+    private:
+        string department;
+        double bonus;
+
+    public:
+        // Конструктор наследуемого класса
+        Manager(string name, double salary, string department, double bonus)
+         : Worker(name, salary), department(department), bonus(bonus) {}
+
+        // Метод для отображения информации о менеджере
+        void displayManagerInfo() const {
+            cout << "Department: " << department << ", Bonus: $" << bonus << endl;
+        }
+
+        // Деструктор наследуемого класса
+        ~Manager() {
+            cout << "Manager " << name << " has been fired." << endl;
+        }
+};
+
+// Главная функция программы
+int main() {
+    // Создаем объект Manager
+    Manager manager("Alice", 60000.0, "Marketing", 5000.0);
+
+    // Вызываем методы для отображения информации
+    manager.displayWorkerInfo();
+    manager.displayManagerInfo();
+
+    return 0;
+}
