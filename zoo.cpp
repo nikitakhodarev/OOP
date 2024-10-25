@@ -1,16 +1,15 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <cstdlib> // Для rand() и srand()
-#include <ctime>   // Для time()
+#include <cstdlib> 
+#include <ctime>   
 
-// Интерфейс для кормления животных
+
 class IFeedable {
 public:
     virtual void Feed() const = 0;
 };
 
-// Определение шаблонного класса Animal
 template <typename T>
 class Animal : public IFeedable {
 protected:
@@ -32,7 +31,7 @@ public:
     }
 };
 
-// Производный класс Mammal
+
 template <typename T>
 class Mammal : public Animal<T> {
 public:
@@ -57,7 +56,7 @@ public:
     }
 };
 
-// Производный класс Bird
+
 template <typename T>
 class Bird : public Animal<T> {
 public:
@@ -80,7 +79,7 @@ public:
     }
 };
 
-// Класс Zoo
+
 class Zoo {
 private:
     std::vector<Animal<double>*> animals;
@@ -115,25 +114,25 @@ public:
     }
 };
 
-// Функция для генерации случайных животных
+
 Animal<double>* CreateRandomAnimal() {
     std::string names[] = {"Lion", "Tiger", "Elephant", "Parrot", "Eagle"};
-    int age = rand() % 15 + 1; // Возраст от 1 до 15
-    double weight = (rand() % 200 + 50) + static_cast<double>(rand()) / RAND_MAX; // Вес от 50 до 250
+    int age = rand() % 15 + 1; 
+    double weight = (rand() % 200 + 50) + static_cast<double>(rand()) / RAND_MAX; 
 
-    int type = rand() % 2; // 0 для млекопитающих, 1 для птиц
+    int type = rand() % 2; 
     if (type == 0) {
-        return new Mammal<double>(names[rand() % 3], age, weight); // Млекопитающие
+        return new Mammal<double>(names[rand() % 3], age, weight);
     } else {
-        return new Bird<double>(names[rand() % 2 + 3], age, weight); // Птицы
+        return new Bird<double>(names[rand() % 2 + 3], age, weight);
     }
 }
 
 int main() {
-    srand(static_cast<unsigned int>(time(0))); // Инициализация генератора случайных чисел
+    srand(static_cast<unsigned int>(time(0))); 
     Zoo zoo;
 
-    // Генерация 10 случайных животных
+    
     for (int i = 0; i < 10; ++i) {
         Animal<double>* animal = CreateRandomAnimal();
         zoo.AddAnimal(animal);
