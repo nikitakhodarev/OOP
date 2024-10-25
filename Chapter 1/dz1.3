@@ -1,0 +1,24 @@
+#include <iostream>
+#include <cstring>
+
+class Computer {
+private:
+    std::string manufacturer;
+    std::string processor;
+    int ramSize;
+    int hddSize;
+    int usedHddSpace;
+
+public:
+  
+    Computer(std::string manufacturer, std::string processor, int ramSize, int hddSize)
+        : manufacturer(manufacturer), processor(processor), ramSize(ramSize), hddSize(hddSize), usedHddSpace(0) {
+        
+    ~Computer() {
+        std::cout << "Computer has been shut down." << std::endl;
+    }
+    
+    bool hasFreeDiskSpace() const {
+        return hddSize > usedHddSpace;
+    }
+};
