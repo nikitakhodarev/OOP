@@ -7,7 +7,6 @@ private:
 public:
     Money(double amount) : amount(amount) {}
 
-    // Перегрузка оператора -
     Money operator-(const Money &other) const {
         if (this->amount < other.amount) {
             std::cerr << "Error: Insufficient funds!" << std::endl;
