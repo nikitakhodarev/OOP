@@ -1,0 +1,22 @@
+class Book {
+private:
+    std::string title;
+    std::string author;
+    int year;
+    int pages;
+
+public:
+    // Constructor
+    Book(std::string title, std::string author, int year, int pages)
+        : title(title), author(author), year(year), pages(pages) {}
+
+    // Destructor
+    ~Book() {
+        std::cout << "Book '" << title << "' has been destroyed." << std::endl;
+    }
+
+    // Method to display book info
+    void displayInfo() const {
+        std::cout << "Book: " << title << " by " << author << ", Year: " << year << ", Pages: " << pages << std::endl;
+    }
+};
