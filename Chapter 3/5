@@ -19,7 +19,7 @@ public:
 
 int main() {
     NotificationService notificationService;
-    notificationService.notifyUser("john@example.com", "Your package has been shipped!");
+    notificationService.notifyUser("khodarevnikita@gmail.com", "Your package has been shipped!");
 
     return 0;
 }
