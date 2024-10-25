@@ -1,0 +1,78 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+// Класс Point
+class Point {
+    public:
+        int x, y;
+
+        // Конструктор для инициализации координат
+        Point(int x = 0, int y = 0) : x(x), y(y) {}
+
+        // Конструктор копирования
+        Point(const Point &p) : x(p.x), y(p.y) {}
+
+        // Метод для отображения информации о точке
+        void display() const {
+            cout << "Point(" << x << ", " << y << ")" << endl;
+        }
+
+        // Метод для смещения точки
+        void move(int dx, int dy) {
+            x += dx;
+            y += dy;
+        }
+};
+
+// Класс Section (отрезок), использующий композицию
+class Section {
+    private:
+        Point *pbeg, *pend;
+
+    public:
+        // Конструктор по умолчанию
+        Section() {
+            pbeg = new Point(0, 0);
+            pend = new Point(0, 0);
+        }
+
+        // Конструктор с параметрами
+        Section(int x1, int y1, int x2, int y2) {
+            pbeg = new Point(x1, y1);
+            pend = new Point(x2, y2);
+        }
+
+        // Конструктор копирования (глубокое копирование)
+        Section(const Section &other) {
+            pbeg = new Point(*other.pbeg);
+            pend = new Point(*other.pend);
+        }
+
+        // Деструктор
+        ~Section() {
+            delete pbeg;
+            delete pend;
+            cout << "Section has been destroyed." << endl;
+        }
+
+        // Метод для отображения информации об отрезке
+        void display() const {
+            cout << "Section: ";
+            pbeg->display();
+            cout << " to ";
+            pend->display();
+        }
+
+        // Метод для вычисления длины отрезка
+        double length() const {
+            return sqrt(pow(pend->x - pbeg->x, 2) + pow(pend->y - pbeg->y, 2));
+        }
+};
+
+// Главная функция программы
+int main() {
+    // Создаем объект Section
+    Section section(1, 2, 4, 6);
+
+    // Вызываем методы для отображения и вычисления длины
