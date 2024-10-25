@@ -1,0 +1,22 @@
+class Movie {
+private:
+    std::string title;
+    std::string director;
+    int releaseYear;
+    double rating;
+
+public:
+    // Constructor
+    Movie(std::string title, std::string director, int releaseYear, double rating)
+        : title(title), director(director), releaseYear(releaseYear), rating(rating) {}
+
+    // Destructor
+    ~Movie() {
+        std::cout << "Movie screening has ended." << std::endl;
+    }
+
+    // Method to display movie info
+    void displayInfo() const {
+        std::cout << "Movie: " << title << " by " << director << ", Year: " << releaseYear << ", Rating: " << rating << std::endl;
+    }
+};
