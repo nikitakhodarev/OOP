@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Базовый класс BankAccount
+class BankAccount {
+    public:
+        string accountHolder;
+        double balance;
+
+        // Конструктор базового класса
+        BankAccount(string accountHolder, double balance)
+         : accountHolder(accountHolder), balance(balance) {}
+
+        // Метод для отображения информации о счете
+        void displayAccountInfo() const {
+            cout << "Account Holder: " << accountHolder << ", Balance: $" << balance << endl;
+        }
+
+        // Деструктор базового класса
+        ~BankAccount() {
+            cout << "Bank account of " << accountHolder << " has been closed." << endl;
+        }
+};
+
+// Класс CheckingAccount, наследующий BankAccount
+class CheckingAccount : public BankAccount {
+    private:
+        double overdraftLimit;
+
+    public:
+        // Конструктор наследуемого класса
+        CheckingAccount(string accountHolder, double balance, double overdraftLimit)
+         : BankAccount(accountHolder, balance), overdraftLimit(overdraftLimit) {}
+
+        // Метод для установки лимита овердрафта
+        void setOverdraftLimit(double limit) {
+            overdraftLimit = limit;
+        }
+
+        // Метод для отображения информации о расчетном счете
+        void displayAccountInfo() const {
+            BankAccount::displayAccountInfo();
+            cout << "Overdraft Limit: $" << overdraftLimit << endl;
+        }
+
+        // Деструктор наследуемого класса
+        ~CheckingAccount() {
+            cout << "Checking account of " << accountHolder << " has been closed." << endl;
+        }
+};
+
+// Главная функция программы
+int main() {
+    // Создаем объект CheckingAccount
+    CheckingAccount account("Alice", 5000.0, 1000.0);
+
+    // Вызываем метод для отображения информации
+    account.displayAccountInfo();
+
+    return 0;
+}
