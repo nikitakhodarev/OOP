@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Базовый класс Product
+class Product {
+    public:
+        string productName;
+        double price;
+
+        // Конструктор базового класса
+        Product(string productName, double price) : productName(productName), price(price) {}
+
+        // Метод для отображения информации о продукте
+        void displayProductInfo() const {
+            cout << "Product: " << productName << ", Price: $" << price << endl;
+        }
+
+        // Деструктор базового класса
+        ~Product() {
+            cout << "Product " << productName << " has been removed from the store." << endl;
+        }
+};
+
+// Класс PerishableProduct, наследующий Product
+class PerishableProduct : public Product {
+    private:
+        string expirationDate;
+        string storageConditions;
+
+    public:
+        // Конструктор наследуемого класса
+        PerishableProduct(string productName, double price, string expirationDate, string storageConditions)
+         : Product(productName, price), expirationDate(expirationDate), storageConditions(storageConditions) {}
+
+        // Метод для отображения информации о скоропортящемся продукте
+        void displayPerishableInfo() const {
+            cout << "Expiration Date: " << expirationDate << ", Storage Conditions: " << storageConditions << endl;
+        }
+
+        // Деструктор наследуемого класса
+        ~PerishableProduct() {
+            cout << "Perishable product " << productName << " is no longer available in storage." << endl;
+        }
+};
+
+// Главная функция программы
+int main() {
+    // Создаем объект PerishableProduct
+    PerishableProduct perishable("Milk", 2.99, "2024-10-10", "Keep refrigerated");
+
+    // Вызываем методы для отображения информации
+    perishable.displayProductInfo();
+    perishable.displayPerishableInfo();
+
+    return 0;
+}
