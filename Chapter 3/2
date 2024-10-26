@@ -46,7 +46,7 @@ public:
 int main() {
     Course course;
     course.addStudent(new Student("John"));
-    course.addStudent(new InternationalStudent("Alice", "Canada"));
+    course.addStudent(new InternationalStudent("Alice", "Korey"));
 
     course.displayStudents();
     return 0;
