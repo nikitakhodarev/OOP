@@ -1,6 +1,6 @@
 #include <iostream>
 
-template <typename T>
+template <typename T> 
 T average(T* array, size_t size) { 
     T sum = 0;
     for (size_t i = 0; i < size; ++i) { 
