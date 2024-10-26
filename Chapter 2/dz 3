@@ -41,7 +41,7 @@ class DesktopComputer : public Computer {
 
 int main() {
     
-    DesktopComputer desktop("Dell", 3.5, 27, true);
+    DesktopComputer desktop("Lg", 4.5, 27, true);
 
     desktop.displayComputerInfo();
     desktop.displayDesktopInfo();
