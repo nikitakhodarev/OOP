@@ -23,7 +23,7 @@ public:
 
 int main() {
     Student student("John");
-    Teacher teacher("Dr. Smith");
+    Teacher teacher("Mr. Smith");
 
     teacher.gradeStudent(student);
     return 0;
