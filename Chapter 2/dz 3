@@ -31,7 +31,7 @@ class DesktopComputer : public Computer {
 
         
         void displayDesktopInfo() const {
-            cout << "Monitor Size: " << monitorSize << " inches, Gaming PC: " << (isGamingPC ? "Yes" : "No") << endl;
+            cout << "Monitor Dell: " << monitorSize << " inches, Gaming PC: " << (isGamingPC ? "Yes" : "No") << endl;
         }
 
         ~DesktopComputer() {
