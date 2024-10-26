@@ -1,8 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <cstdlib> 
-#include <ctime>   
+#include <cstdlib>
+#include <ctime>  
+
 
 class IFeedable {
 public:
@@ -15,11 +16,11 @@ protected:
     std::string name;
     int age;
     T weight;
-    bool fed;
+bool isFed = false; // Добавляем флаг для отслеживания сытости
 
 public:
     Animal(const std::string &name, int age, T weight)
-        : name(name), age(age), weight(weight), fed(false) {}
+        : name(name), age(age), weight(weight) {}
 
     virtual void MakeSound() const = 0;
     virtual void DisplayInfo() const {
@@ -28,13 +29,10 @@ public:
 
     void Feed() const override {
         std::cout << name << " is being fed." << std::endl;
-        fed = true;
-    }
-
-    bool IsFed() const {
-        return fed;
+isFed = true; // Помечаем животное как сытое
     }
 };
+
 
 template <typename T>
 class Mammal : public Animal<T> {
@@ -60,6 +58,7 @@ public:
     }
 };
 
+
 template <typename T>
 class Bird : public Animal<T> {
 public:
@@ -81,6 +80,7 @@ public:
         Animal<T>::DisplayInfo();
     }
 };
+
 
 class Zoo {
 private:
@@ -108,19 +108,20 @@ public:
             animal->Feed();
         }
     }
-
-    void ShowFeedingStatus() const {
-        int fedCount = 0;
-        for (size_t i = 0; i < animals.size(); ++i) {
-            if (animals[i]->IsFed()) {
-                std::cout << "Animal at index " << i << " has been fed." << std::endl;
-                fedCount++;
-            } else {
-                std::cout << "Animal at index " << i << " needs to be fed." << std::endl;
-            }
-        }
-        std::cout << fedCount << " animals have been fed." << std::endl;
-    }
+// Новая функция для вывода информации о сытости
+void DisplayFeedingStatus() const {
+int fedCount = 0;
+std::cout << "Feeding status:" << std::endl;
+for (size_t i = 0; i < animals.size(); ++i) {
+if (animals[i]->isFed) {
+std::cout << "Animal " << i << " (" << animals[i]->name << ") is fed." << std::endl;
+fedCount++;
+} else {
+std::cout << "Animal " << i << " (" << animals[i]->name << ") needs to be fed." << std::endl;
+}
+}
+std::cout << "Total fed animals: " << fedCount << std::endl;
+}
 
     ~Zoo() {
         for (auto &animal : animals) {
@@ -129,12 +130,13 @@ public:
     }
 };
 
+
 Animal<double>* CreateRandomAnimal() {
     std::string names[] = {"Lion", "Tiger", "Elephant", "Parrot", "Eagle"};
-    int age = rand() % 15 + 1; 
-    double weight = (rand() % 200 + 50) + static_cast<double>(rand()) / RAND_MAX; 
+    int age = rand() % 15 + 1;
+    double weight = (rand() % 200 + 50) + static_cast<double>(rand()) / RAND_MAX;
 
-    int type = rand() % 2; 
+    int type = rand() % 2;
     if (type == 0) {
         return new Mammal<double>(names[rand() % 3], age, weight);
     } else {
@@ -143,15 +145,16 @@ Animal<double>* CreateRandomAnimal() {
 }
 
 int main() {
-    srand(static_cast<unsigned int>(time(0))); 
+    srand(static_cast<unsigned int>(time(0)));
     Zoo zoo;
 
+   
     for (int i = 0; i < 10; ++i) {
         Animal<double>* animal = CreateRandomAnimal();
         zoo.AddAnimal(animal);
     }
 
-    std::cout<< "Animals in the zoo:" << std::endl;
+    std::cout << "Animals in the zoo:" << std::endl;
     zoo.DisplayAllAnimals();
 
     std::cout << "\nAnimals making sounds:" << std::endl;
@@ -160,9 +163,8 @@ int main() {
     std::cout << "\nFeeding animals:" << std::endl;
     zoo.FeedAllAnimals();
 
-    std::cout << "\nFeeding status:" << std::endl;
-    zoo.ShowFeedingStatus();
+// Вывод информации о сытости
+zoo.DisplayFeedingStatus();
 
     return 0;
 }
-
